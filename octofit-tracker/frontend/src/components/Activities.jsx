@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { getApiBaseUrl } from '../utils/api';
 
-const activitiesUrl = `${getApiBaseUrl()}/api/activities/`;
+const activitiesUrl = import.meta.env.VITE_CODESPACE_NAME
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/activities`
+  : 'http://localhost:8000/api/activities';
 
 export default function Activities() {
   const [items, setItems] = useState([]);

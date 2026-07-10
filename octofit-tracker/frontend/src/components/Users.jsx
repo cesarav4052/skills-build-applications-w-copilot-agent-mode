@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { getApiBaseUrl } from '../utils/api';
 
-const usersUrl = `${getApiBaseUrl()}/api/users/`;
+const usersUrl = import.meta.env.VITE_CODESPACE_NAME
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/users`
+  : 'http://localhost:8000/api/users';
 
 export default function Users() {
   const [items, setItems] = useState([]);
