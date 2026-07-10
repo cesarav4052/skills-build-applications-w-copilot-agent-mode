@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { getApiBaseUrl } from '../utils/api';
 
+const activitiesUrl = `${getApiBaseUrl()}/api/activities/`;
+
 export default function Activities() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -9,7 +11,7 @@ export default function Activities() {
   useEffect(() => {
     async function loadActivities() {
       try {
-        const response = await fetch(`${getApiBaseUrl()}/api/activities/`);
+        const response = await fetch(activitiesUrl);
         if (!response.ok) throw new Error('Unable to load activities');
         const data = await response.json();
         const activities = Array.isArray(data) ? data : data.items || data.results || [];
